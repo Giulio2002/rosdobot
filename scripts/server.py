@@ -6,13 +6,17 @@ from threading import Thread
 import rospy
 import sys
 
-port = "/dev/dobot"
+if(len(sys.argv) == 1):
+    print "USAGE [PORT directory]"
+    sys.exit(1)
 
+port = sys.argv[1];
 available_ports = glob(port)
 if(len(available_ports) == 0):
     print('no port found for Dobot Magician')
     exit(1)
 device = Dobot(port=available_ports[0])
+
 #test function
 def setStartPose():
     time.sleep(0.5)
@@ -40,6 +44,7 @@ def set_cp():
     print "setcp server started"
     rospy.spin()
 
+#set velocity and acceleration
 def handler_set_parameter(req):
     available_ports = glob(port)
     device.speed(req.speed,req.acceleration)
