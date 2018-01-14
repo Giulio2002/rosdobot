@@ -5,7 +5,7 @@
 catkin_make
 ```
 ```
-rosrun rosdobot dobotServer.py
+rosrun rosdobot dobotServer.py [magician port]
 ```
 ---
 
